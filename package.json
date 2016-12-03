@@ -1,10 +1,15 @@
 {
   "name": "faster-lru-cache",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A modern LRU Cache tuned for perofrmance",
   "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
   "author": "Marvin Hagemeister <marvin@marvinhagemeister.de>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:marvinhagemeister/faster-lru-cache.git"
+  },
   "scripts": {
     "lint": "tslint 'src/**/*.ts'",
     "watch": "tsc -w",
