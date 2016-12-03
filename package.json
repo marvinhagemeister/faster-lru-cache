@@ -1,6 +1,6 @@
 {
   "name": "faster-lru-cache",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "A modern LRU Cache tuned for perofrmance",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
