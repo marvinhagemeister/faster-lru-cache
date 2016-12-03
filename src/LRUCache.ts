@@ -3,8 +3,8 @@ export type CacheKey = string | number | symbol;
 export interface Cache<K, V> {
   set(key: K, value: V): void;
   get(key: K): V;
-  remove(key: K): void;
-  flush(): void;
+  delete(key: K): void;
+  clear(): void;
 }
 
 export default class LRUCache<V> implements Cache<CacheKey, V> {
@@ -14,6 +14,14 @@ export default class LRUCache<V> implements Cache<CacheKey, V> {
 
   constructor(limit: number) {
     this.limit = limit;
+
+    this.set = this.set.bind(this);
+    this.get = this.get.bind(this);
+    this.delete = this.delete.bind(this);
+  }
+
+  get size() {
+    return this._cache.size;
   }
 
   set(key: CacheKey, value: V) {
@@ -22,7 +30,7 @@ export default class LRUCache<V> implements Cache<CacheKey, V> {
 
     if (this.limit > 0 && this._cache.size > this.limit) {
       const old = this.usage[this.usage.length - 1];
-      this.remove(old, true);
+      this.delete(old, true);
     }
   }
 
@@ -36,7 +44,7 @@ export default class LRUCache<V> implements Cache<CacheKey, V> {
     return item;
   }
 
-  remove(key: CacheKey, isLast: boolean = false) {
+  delete(key: CacheKey, isLast: boolean = false) {
     this._cache.delete(key);
 
     if (isLast) {
@@ -47,7 +55,7 @@ export default class LRUCache<V> implements Cache<CacheKey, V> {
     }
   }
 
-  flush() {
+  clear() {
     this._cache.clear();
     this.usage = [];
   }

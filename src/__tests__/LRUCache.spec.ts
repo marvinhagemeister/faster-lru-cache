@@ -1,7 +1,7 @@
 import { assert as t } from "chai";
 import LRUCache from "../LRUCache";
 
-describe.only("LRUCache", () => {
+describe("LRUCache", () => {
   let c: LRUCache<string>;
 
   beforeEach(() => {
@@ -17,9 +17,9 @@ describe.only("LRUCache", () => {
     t.equal(c.get("2"), "Hello");
   });
 
-  it("should remove an item", () => {
+  it("should delete an item", () => {
     c.set("2", "Hello");
-    c.remove("2");
+    c.delete("2");
     t.equal(c.get("2"), undefined);
   });
 
@@ -33,5 +33,23 @@ describe.only("LRUCache", () => {
     t.equal(c.get("2"), "World");
     t.equal(c.get("3"), "!");
     t.equal(c.get("4"), "nope");
+  });
+
+  it("should clear the cache", () => {
+    c.set("1", "Hello");
+    c.set("2", "World");
+    c.set("3", "!");
+    t.equal(c.size, 3);
+
+    c.clear();
+    t.equal(c.size, 0);
+  });
+
+  it("should return the correct size", () => {
+    c.set("1", "Hello");
+    c.set("2", "World");
+    c.set("3", "!");
+
+    t.equal(c.size, 3);
   });
 });
