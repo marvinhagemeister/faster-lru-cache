@@ -1,1 +1,1 @@
-export * from "./LRUCache";
+export { default as default } from "./LRUCache";
