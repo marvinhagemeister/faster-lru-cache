@@ -1,5 +1,5 @@
 import { assert as t } from "chai";
-import LRUCache from "../LRUCache";
+import LRUCache from "../index";
 
 describe("index", () => {
   it("should export LRUCache as default", () => {
